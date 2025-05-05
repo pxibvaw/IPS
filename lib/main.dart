@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:my_figma_app/result_1/result1_screen.dart';
 
 
