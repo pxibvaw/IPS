@@ -35,6 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  #경로 아동 기능
+  go_router: ^13.2.2
+
   #캘릭더 기능
   http: ^0.13.6
   table_calendar: ^3.0.9
@@ -62,8 +65,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/
-    - assets/icons/
+    - lib/result_1/assets/images/
+    - lib/result_1/assets/images/
+    - my_figma_app/result_1/icons/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

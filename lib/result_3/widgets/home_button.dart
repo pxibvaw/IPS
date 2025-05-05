@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../intro/intro_screen.dart';
+import 'package:go_router/go_router.dart';
 
  // 홈 화면 연결 경로
 
