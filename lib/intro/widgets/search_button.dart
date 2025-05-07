@@ -18,7 +18,7 @@ class SearchButton extends StatelessWidget {
           );
         },
         child: Image.asset(
-          'assets/images/ddong_search.png', // ✅ 버튼 이미지
+          'assets/ddong_search.png', // ✅ 버튼 이미지
           width: 74,
           height: 78,
         ),

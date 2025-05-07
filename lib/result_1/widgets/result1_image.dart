@@ -7,7 +7,7 @@ class Result1Image extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Image.asset(
-        'assets/images/ddong_normal.png', // ✅ 변경된 이미지 파일 이름
+        'assets/ddong_normal.png', // ✅ 변경된 이미지 파일 이름
         width: 255,
         height: 270,
         fit: BoxFit.cover,

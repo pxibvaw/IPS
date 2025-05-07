@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_figma_app/intro/intro_screen.dart'; // 실제 경로에 맞게 수정하세요
+import 'package:my_figma_app/intro/intro_screen.dart';
 
 class LoginButton extends StatelessWidget {
   final TextEditingController emailController;

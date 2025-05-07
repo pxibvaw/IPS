@@ -65,9 +65,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/result_1/assets/images/
-    - lib/result_1/assets/images/
-    - my_figma_app/result_1/icons/
+    - assets/images/home_icon.png
+    - assets/icons/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

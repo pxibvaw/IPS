@@ -3,7 +3,7 @@ import 'widgets/result1_background.dart';
 import 'widgets/result1_title.dart';
 import 'widgets/result1_image.dart';
 import 'widgets/result1_description.dart';
-import 'widgets/.home_button.dart';
+import 'widgets/home_button.dart';
 
 class Result1Screen extends StatelessWidget {
   const Result1Screen({Key? key}) : super(key: key);

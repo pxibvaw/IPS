@@ -13,7 +13,7 @@ class ShibaImageWidget extends StatelessWidget {
         height: 132,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/shiba.png'),
+            image: AssetImage('assets/puppy.png'),
             fit: BoxFit.cover,
           ),
         ),

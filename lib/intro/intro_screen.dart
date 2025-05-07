@@ -8,13 +8,13 @@ import 'widgets/shiba_image_widget.dart';
 
 class IntroScreen extends StatelessWidget {
   final String name;
-  final String age;
+  final String birth;
   final String species;
 
   const IntroScreen({
     super.key,
     required this.name,
-    required this.age,
+    required this.birth,
     required this.species,
   });
 
@@ -42,7 +42,7 @@ class IntroScreen extends StatelessWidget {
                     Expanded(
                       child: DogInfoWidget(
                         name: name,
-                        age: age,
+                        birth: birth,
                         species: species,
                       ),
                     ),
@@ -64,7 +64,14 @@ class IntroScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // ✅ 캘린더 위젯
-              const Expanded(child: CalendarWidget()),
+              Expanded(
+                child: CalendarWidget(
+                  onDateSelected: (selectedDate, note) {
+                    // 예: 상태 저장, 화면 갱신 등
+                  },
+                ),
+              ),
+
             ],
           ),
 
