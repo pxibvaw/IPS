@@ -31,6 +31,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       // 배경 이미지와 내용 위젯을 겹쳐 배치하기 위해 Stack 사용
       body: Stack(
         children: [

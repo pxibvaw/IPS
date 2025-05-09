@@ -65,7 +65,10 @@ flutter:
   uses-material-design: true
 
   assets:
-    - lib/assets/home_icon.png
+    - assets/home_icon.png
+    - assets/ddong_search.png
+    - assets/bg_start.png
+
 
 
 
