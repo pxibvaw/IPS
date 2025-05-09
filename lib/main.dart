@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:my_figma_app/result_1/result1_screen.dart';
-
+import 'package:my_figma_app/result_lbs/result_lbs_screen.dart'; // 파일 경로는 실제 구조에 맞게 조정하세요.
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Püffy App',
       debugShowCheckedModeBanner: false,
-      initialRoute: '/upload',
-      routes: {
-
-        '/result_1': (context) => const Result1Screen(),
-
-      },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: ResultNB(),
     );
   }
 }

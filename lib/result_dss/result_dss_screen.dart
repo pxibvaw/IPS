@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_figma_app/intro/intro_screen.dart';
 
-class ResultNB extends StatelessWidget {
+class ResultDSS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
