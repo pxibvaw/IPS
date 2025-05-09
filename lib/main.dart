@@ -1,25 +1,130 @@
 import 'package:flutter/material.dart';
-import 'package:my_figma_app/start/start_screen.dart'; // 앱 시작 화면으로 설정
+import 'sign_in/sign_in_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const FigmaToCodeApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FigmaToCodeApp extends StatelessWidget {
+  const FigmaToCodeApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Püffy',
-      theme: ThemeData(
-        fontFamily: 'SUITE', // 폰트 썼다면 여기에 맞춰 지정
+      theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
-        useMaterial3: true,
       ),
-      home: const StartScreen(), // 첫화면 startscreen 3초 보여주기
+      home: const SplashScreen(),
+    );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SignInScreen()),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView(children: const [
+        Start(),
+      ]),
+    );
+  }
+}
+
+class Start extends StatelessWidget {
+  const Start({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const backgroundImageUrl = 'assets/bg_start.png';
+    const characterImageUrl = 'assets/ddong_search.png';
+
+    return Column(
+      children: [
+        Container(
+          width: 412,
+          height: 917,
+          clipBehavior: Clip.antiAlias,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(backgroundImageUrl),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                left: 82,
+                top: 224,
+                child: Container(
+                  width: 249,
+                  height: 249,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(characterImageUrl),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              const Positioned(
+                left: 155,
+                top: 443,
+                child: Text(
+                  'Püffy',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
+                    height: 1.50,
+                    letterSpacing: -0.40,
+                  ),
+                ),
+              ),
+              const Positioned(
+                left: 48,
+                top: 738,
+                child: SizedBox(
+                  width: 316,
+                  height: 123,
+                  child: Text(
+                    'poop has something to say!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w500,
+                      height: 1.50,
+                      letterSpacing: -0.18,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

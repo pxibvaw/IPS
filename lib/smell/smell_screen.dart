@@ -29,7 +29,7 @@ class _SmellScreenState extends State<SmellScreen> {
             // 이미지 + 질문
             Column(
               children: [
-                Image.asset('lib/assets/searchDog.png', width: 160),
+                Image.asset('assets/ddong_searchDog.png', width: 160),
                 const SizedBox(height: 20),
                 const Text(
                   '강아지(이)의 응가 냄새는 어땠나요?',

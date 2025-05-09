@@ -23,7 +23,7 @@ class DogInfoWidget extends StatelessWidget {
         width: 180,
         height: 107,
         child: Text(
-          'name: $name\nage: $birth years\nspecies: $species',
+          'name: $name\nage: $birth\nspecies: $species',
           style: const TextStyle(
             color: Color(0xFF402E22),
             fontSize: 21,

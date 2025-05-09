@@ -4,6 +4,7 @@ import 'package:my_figma_app/sign_in/widgets/password_input_widget.dart';
 import 'package:my_figma_app/sign_in/widgets/login_button.dart';
 import 'package:my_figma_app/sign_in/widgets/sign_in_background.dart';
 import 'package:my_figma_app/sign_in/widgets/signup_text_widget.dart';
+import 'package:my_figma_app/setting/setting_screen.dart'; // ✅ 추가
 
 /// 로그인 화면 전체 구성 위젯
 class SignInScreen extends StatefulWidget {
@@ -14,34 +15,41 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  // 이메일 입력값을 제어할 컨트롤러
   final TextEditingController emailController = TextEditingController();
-
-  // 비밀번호 입력값을 제어할 컨트롤러
   final TextEditingController passwordController = TextEditingController();
 
   @override
   void dispose() {
-    // 메모리 누수 방지를 위해 컨트롤러 해제
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
+  void _handleLogin() {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    // 로그인 시도 후 바로 SettingScreen으로 이동
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SettingScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // 배경 이미지와 내용 위젯을 겹쳐 배치하기 위해 Stack 사용
       body: Stack(
         children: [
-          const SignInBackground(), // 배경 + 캐릭터 이미지
+          const SignInBackground(),
           SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 60),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 200), // 상단 여백
-                // 환영 문구
+                const SizedBox(height: 200),
                 const Text(
                   'welcome!',
                   style: TextStyle(
@@ -52,19 +60,31 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                // 이메일 입력 필드
                 EmailInputWidget(controller: emailController),
                 const SizedBox(height: 20),
-                // 비밀번호 입력 필드
                 PasswordInputWidget(controller: passwordController),
                 const SizedBox(height: 30),
-                // 로그인 버튼
-                LoginButton(
-                  emailController: emailController,
-                  passwordController: passwordController,
+                ElevatedButton(
+                  onPressed: _handleLogin,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFE3CCBC),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.10,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 30),
-                // 계정 생성 문구 및 링크
                 const SignupTextWidget(),
               ],
             ),

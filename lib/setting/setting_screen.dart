@@ -17,6 +17,17 @@ class _SettingScreenState extends State<SettingScreen> {
   final TextEditingController speciesController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
 
+  TextInputFormatter koreanEnglishOnlyFormatter = TextInputFormatter.withFunction(
+        (oldValue, newValue) {
+      final text = newValue.text;
+      final regExp = RegExp(r'^[\uac00-\ud7a3a-zA-Z]*');
+      if (regExp.hasMatch(text) || text.isEmpty) {
+        return newValue;
+      }
+      return oldValue;
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +35,7 @@ class _SettingScreenState extends State<SettingScreen> {
         key: _formKey,
         child: Column(
           children: [
-            const SizedBox(height: 40), // 여백 조정
+            const SizedBox(height: 40),
             const Text(
               "welcome!",
               style: TextStyle(fontSize: 48, fontWeight: FontWeight.w400),
@@ -36,9 +47,7 @@ class _SettingScreenState extends State<SettingScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextFormField(
                 controller: nameController,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[\uac00-\ud7a3a-zA-Z]')),
-                ],
+                inputFormatters: [koreanEnglishOnlyFormatter],
                 decoration: InputDecoration(
                   hintText: "이름 입력",
                   filled: true,
@@ -71,9 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: TextFormField(
                 controller: speciesController,
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[\uac00-\ud7a3a-zA-Z]')),
-                ],
+                inputFormatters: [koreanEnglishOnlyFormatter],
                 decoration: InputDecoration(
                   hintText: "종 입력 (예: 강아지 / Dog)",
                   filled: true,

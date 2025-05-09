@@ -27,14 +27,14 @@ class _StartScreenState extends State<StartScreen> {
       body: Column(
         children: [
           Image.asset(
-            "assets/image 2.png",
+            "assets/bg_start.png",
             width: 413.3,
             height: 917,
             fit: BoxFit.cover,
           ),
           const SizedBox(height: 20),
           Image.asset(
-            "assets/돋보기.png",
+            "assets/ddong_search.png",
             width: 249,
             height: 249,
           ),
