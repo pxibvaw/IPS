@@ -11,7 +11,7 @@ class ResultScreen extends StatelessWidget {
       backgroundColor: Color(0xFFEAF3FF),
       body: Center(
         child: Text(
-          '🧠 분석 결과 화면 (추후 AI 결과 연동 예정)',
+          '분석 결과 화면 (추후 AI 결과 연동 예정)',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 22,
