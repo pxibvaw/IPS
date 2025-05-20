@@ -116,7 +116,7 @@ def build_efficientnet_b0(input_shape=(128,128,3), num_classes=4, dropout_rate=0
 # 콜백
 callbacks = [
     tf.keras.callbacks.ModelCheckpoint(
-        filepath=os.path.join(model_dir, "best_model.h5"),
+        filepath=os.path.join(model_dir, "best_model.keras"),
         monitor='val_loss',
         save_best_only=True,
         save_weights_only=False,
@@ -159,17 +159,17 @@ for images, labels in test_ds:
 print(confusion_matrix(y_true, y_pred))
 print(classification_report(y_true, y_pred, target_names=['Diarrhea','Lack of Water','Normal','Soft Poop']))
 
-# 오분류 이미지 시각화
-mis_idx = [i for i, (a, b) in enumerate(zip(y_true, y_pred)) if a != b]
-for idx in mis_idx[:10]:
-    img, label = list(test_ds.unbatch().as_numpy_iterator())[idx]
-    plt.imshow(img)
-    plt.title(f"True: {y_true[idx]}, Pred: {y_pred[idx]}")
-    plt.show()
 
-# 모델 저장
+# 학습 완료 후 best_model 로딩
+best_model = tf.keras.models.load_model(os.path.join(model_dir, "best_model.keras"))
 
-model.save(os.path.join(model_dir, "final_model.h5"))
+# 평가
+test_loss, test_acc = best_model.evaluate(test_ds)
+print(f"\nBest Model Test Accuracy: {test_acc:.2f}")
+
+# 저장
+best_model.save(os.path.join(model_dir, "final_model.keras"))
+
 
 import os
 import tensorflow as tf
@@ -200,5 +200,5 @@ def verify_model_saved_and_loadable(model_path, min_size_kb=100):
         return False
 
 
-verify_model_saved_and_loadable(os.path.join(model_dir, "best_model.h5"))
-verify_model_saved_and_loadable(os.path.join(model_dir, "final_model.h5"))
+verify_model_saved_and_loadable(os.path.join(model_dir, "best_model.keras"))
+verify_model_saved_and_loadable(os.path.join(model_dir, "final_model.keras"))
