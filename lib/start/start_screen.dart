@@ -24,29 +24,39 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Stack(
+        fit: StackFit.expand,
         children: [
+          // 배경 이미지
           Image.asset(
             "assets/bg_start.png",
-            width: 413.3,
-            height: 917,
             fit: BoxFit.cover,
           ),
-          const SizedBox(height: 20),
-          Image.asset(
-            "assets/ddong_search.png",
-            width: 249,
-            height: 249,
+
+          // 중앙 콘텐츠
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/ddong_search.png",
+                width: 249,
+                height: 249,
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Püffy",
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+              ),
+              const Text(
+                "poop has something to say!",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF79A0FF) // 색상 적용됨!
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 20),
-          const Text(
-            "Püffy",
-            style: TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
-          ),
-          const Text(
-            "poop has something to say!",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-          )
         ],
       ),
     );

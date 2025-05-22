@@ -33,7 +33,7 @@ class IntroScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset(
-                      'assets/shiba.png',
+                      'assets/propuppy.png',
                       width: 100,
                       height: 100,
                     ),

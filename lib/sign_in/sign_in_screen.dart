@@ -4,7 +4,7 @@ import 'package:my_figma_app/sign_in/widgets/password_input_widget.dart';
 import 'package:my_figma_app/sign_in/widgets/login_button.dart';
 import 'package:my_figma_app/sign_in/widgets/sign_in_background.dart';
 import 'package:my_figma_app/sign_in/widgets/signup_text_widget.dart';
-import 'package:my_figma_app/setting/setting_screen.dart'; // ✅ 추가
+import 'package:my_figma_app/setting/setting_screen.dart';
 
 /// 로그인 화면 전체 구성 위젯
 class SignInScreen extends StatefulWidget {

@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SignInScreen()),
@@ -111,7 +111,7 @@ class Start extends StatelessWidget {
                     'poop has something to say!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color(0xFF79A0FF),
                       fontSize: 18,
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w500,

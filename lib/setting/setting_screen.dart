@@ -35,13 +35,30 @@ class _SettingScreenState extends State<SettingScreen> {
         key: _formKey,
         child: Column(
           children: [
-            const SizedBox(height: 40),
-            const Text(
-              "welcome!",
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.w400),
+            const SizedBox(height: 80), // 여백 조금 더 줌
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "welcome!",
+                    style: TextStyle(
+                      fontSize: 40,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Image.asset(
+                    "assets/puppy.png",
+                    width: 120,
+                    height: 120,
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
             ),
+            const SizedBox(height: 32),
 
-            const SizedBox(height: 16),
             const Text("Name", style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
