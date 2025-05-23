@@ -7,7 +7,7 @@ class CountScreen extends StatefulWidget {
 }
 
 class _CountScreenState extends State<CountScreen> {
-  int? selectedDurationIndex; // 0: 1일, 1: 하루 이상 안함
+  int? selectedDurationIndex;
   int? selectedSubOptionIndex;
 
   final List<String> durations = ['1일', '하루 이상 안함'];
@@ -27,157 +27,199 @@ class _CountScreenState extends State<CountScreen> {
     });
   }
 
-  Widget buildHowMuchBox() {
-    return Container(
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Color(0xFFD3DCE2),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        children: [
-          Text("얼마나", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 12,
-            runSpacing: 12,
-            children: List.generate(subOptionsFor1Day.length, (index) {
-              final isSelected = selectedSubOptionIndex == index;
-              return GestureDetector(
-                onTap: () => onSubOptionSelected(index),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: isSelected ? Color(0xFF86B8FF) : Color(0xFFEAF3FF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    subOptionsFor1Day[index],
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: isSelected ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ),
-              );
-            }),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildCheck48hBox() {
-    return Container(
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Color(0xFFD3DCE2),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        children: [
-          Text("48시간 이내 배변 여부", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-          const SizedBox(height: 12),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(subOptionsForNone.length, (index) {
-              final isSelected = selectedSubOptionIndex == index;
-              return GestureDetector(
-                onTap: () => onSubOptionSelected(index),
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 12),
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  decoration: BoxDecoration(
-                    color: isSelected ? Color(0xFF86B8FF) : Color(0xFFEAF3FF),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    subOptionsForNone[index],
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: isSelected ? Colors.white : Colors.black,
-                    ),
-                  ),
-                ),
-              );
-            }),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF0F4F1),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(height: 20),
             Image.asset("assets/ddong_searchDog.png", width: 163, height: 163),
-            const SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 12),
+            const Text(
               "강아지(이)의 응가 횟수를\n알려주세요!",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-            const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(durations.length, (index) {
-                final isSelected = selectedDurationIndex == index;
-                return GestureDetector(
-                  onTap: () => onDurationSelected(index),
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    decoration: BoxDecoration(
-                      color: isSelected ? Color(0xFF86B8FF) : Color(0xFFEAF3FF),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      durations[index],
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: isSelected ? Colors.white : Colors.black,
-                      ),
-                    ),
+            const SizedBox(height: 32),
+            Container(
+              width: 300,
+              height: selectedDurationIndex ==0 ? 300
+                  : selectedDurationIndex ==1 ? 240 : 157,
+              decoration: BoxDecoration(
+                color: const Color(0xfff2f6f9),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start, // 좌측 정렬
+                children: [
+                  const SizedBox(height: 8),
+                  const Text("얼마동안", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 14),
+                  Row(
+                    children: List.generate(durations.length, (index) {
+                      final isSelected = selectedDurationIndex == index;
+                      return GestureDetector(
+                        onTap: () => onDurationSelected(index),
+                        child: Container(
+                          width: index == 0 ? 66 : 99,
+                          height: 41,
+                          margin: const EdgeInsets.only(right: 12),
+                          alignment: Alignment.center, // 글씨 가운데 정렬
+                          decoration: BoxDecoration(
+                            color: isSelected ? const Color(0xFF86B8FF) : const Color(0xFFEAF3FF),
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 4,
+                                offset: Offset(2, 2),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            durations[index],
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: isSelected ? Colors.white : Colors.black,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
                   ),
-                );
-              }),
+                  if (selectedDurationIndex == 0) ...[
+                    const SizedBox(height: 32),
+                    const Text("얼마나", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                    const SizedBox(height: 14),
+                    Wrap(
+                      spacing: 12,
+                      runSpacing: 12,
+                      children: List.generate(subOptionsFor1Day.length, (index) {
+                        final isSelected = selectedSubOptionIndex == index;
+                        double buttonWidth = index == 4? 83: 66;
+
+                        return GestureDetector(
+                          onTap: () => onSubOptionSelected(index),
+                          child: Container(
+                            width: buttonWidth, height: 41,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: isSelected ? const Color(0xFF86B8FF) : const Color(0xFFEAF3FF),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 4,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
+                            child: Text(
+                              subOptionsFor1Day[index],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: isSelected ? Colors.white : Colors.black,
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
+                  if (selectedDurationIndex == 1) ...[
+                    const SizedBox(height: 32),
+                    const Text("48시간 이내 배변 여부", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
+                    const SizedBox(height: 14),
+                    Row(
+                      children: List.generate(subOptionsForNone.length, (index) {
+                        final isSelected = selectedSubOptionIndex == index;
+                        return GestureDetector(
+                          onTap: () => onSubOptionSelected(index),
+                          child: Container(
+                            width: 66,
+                            height: 41,
+                            margin: const EdgeInsets.only(right: 12),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: isSelected ? const Color(0xFF86B8FF) : const Color(0xFFEAF3FF),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 4,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
+                            child:
+                            Text(
+                              subOptionsForNone[index],
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: isSelected ? Colors.white : Colors.black,
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ],
+                ],
+              ),
             ),
-            if (selectedDurationIndex == 0) buildHowMuchBox(),
-            if (selectedDurationIndex == 1) buildCheck48hBox(),
-            const SizedBox(height: 24),
+            const Spacer(),
             if (selectedSubOptionIndex != null)
-              ElevatedButton(
-                onPressed: () {
+              GestureDetector(
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => LoadingScreen()),
                   );
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFEBF3FF),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  width: 342,
+                  height: 47,
+                  decoration: BoxDecoration(
+                    color: const Color(0xffebf3ff),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 6,
+                        offset: Offset(3, 3),
+                      ),
+                    ],
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 16),
-                ),
-                child: const Text(
-                  "분석",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black,
+                  alignment: Alignment.center,
+                  child: const Text(
+                    "분석",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
               ),
+            const SizedBox(height: 12),
+            Container(
+              width: 134,
+              height: 5,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Colors.black,
+              ),
+            ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
